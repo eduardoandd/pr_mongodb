@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, unnecessary_new
 
 import 'package:flutter/material.dart';
 import 'package:pr_mongodb/dbHelper/mongodb.dart';
+
+import 'dbHelper/insert.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +14,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
     
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const MongoDbInsert(),
     );
   }
 }
@@ -51,5 +54,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Text("helo"),
       ),
     );
+  }
+  void _fakeData() {
+
   }
 }
