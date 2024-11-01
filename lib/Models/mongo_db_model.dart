@@ -1,9 +1,4 @@
-// To parse this JSON data, do
-//
-//     final mongoDbModel = mongoDbModelFromJson(jsonString);
-
 import 'dart:convert';
-
 import 'package:mongo_dart/mongo_dart.dart';
 
 MongoDbModel mongoDbModelFromJson(String str) => MongoDbModel.fromJson(json.decode(str));
@@ -28,16 +23,20 @@ class MongoDbModel {
     });
 
     factory MongoDbModel.fromJson(Map<String, dynamic> json) => MongoDbModel(
-        idVeterinario: json["ID_VETERINARIO"],
-        nome: json["NOME"],
-        idade: json["IDADE"],
-        anosExp: json["ANOS_EXP"],
-        cidade: json["CIDADE"],
-        especealidade: json["ESPECEALIDADE"],
+        idVeterinario: json["ID_VETERINARIO"] is String
+            ? ObjectId.fromHexString(json["ID_VETERINARIO"] as String)
+            : (json["ID_VETERINARIO"] is ObjectId 
+                ? json["ID_VETERINARIO"] as ObjectId 
+                : ObjectId()), 
+        nome: json["NOME"] ?? '',
+        idade: json["IDADE"] ?? 0,
+        anosExp: json["ANOS_EXP"] ?? 0,
+        cidade: json["CIDADE"] ?? '',
+        especealidade: json["ESPECEALIDADE"] ?? '',
     );
 
     Map<String, dynamic> toJson() => {
-        "ID_VETERINARIO": idVeterinario,
+        "ID_VETERINARIO": idVeterinario.toHexString(),
         "NOME": nome,
         "IDADE": idade,
         "ANOS_EXP": anosExp,

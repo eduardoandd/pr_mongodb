@@ -16,9 +16,15 @@ class MongoDatabase{
       inspect(db);
       userCollection = db.collection(USER_COLLECTION);
       print("Conectado");
-    } catch (e) {
+    } 
+    catch (e) {
       print("Erro: $e");
     }
+  }
+
+  static Future<List<Map<String,dynamic>>> getData() async {
+    final arrData = await userCollection.find().toList();
+    return arrData;
   }
 
   static Future<String> insert(MongoDbModel data) async {

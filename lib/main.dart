@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:pr_mongodb/dbHelper/display.dart';
 import 'package:pr_mongodb/dbHelper/mongodb.dart';
 
 import 'dbHelper/insert.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
     
         primarySwatch: Colors.blue,
       ),
-      home: const MongoDbInsert(),
+      home: const MongoDbDisplay(),
     );
   }
 }
